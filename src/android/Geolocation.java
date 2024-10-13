@@ -142,8 +142,7 @@ public class Geolocation extends CordovaPlugin {
         return false;
     }
 
-    public void onRequestPermissionResult(int requestCode, String[] permissions,
-                                          int[] grantResults) {
+    public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) {
         PluginResult result;
         //This is important if we're using Cordova without using Cordova, but we have the geolocation plugin installed
         if (context != null) {
@@ -159,7 +158,6 @@ public class Geolocation extends CordovaPlugin {
                     }
                     return;
                 }
-
             }
             LOG.d(TAG, "Permission Denied!");
             result = new PluginResult(PluginResult.Status.ILLEGAL_ACCESS_EXCEPTION);
@@ -169,11 +167,11 @@ public class Geolocation extends CordovaPlugin {
 
     public boolean hasPermission(String[] permissions) {
         for (String p : permissions) {
-            if (PermissionHelper.hasPermission(this, p)) {
-                return true;
+            if (!PermissionHelper.hasPermission(this, p)) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     /*
