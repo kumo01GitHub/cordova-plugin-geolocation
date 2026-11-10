@@ -55,8 +55,6 @@
 
 - (void)pluginInitialize
 {
-    // TODO: The CLLocationManager instance is only safe to use on the thread/dispatch queue it was created in.
-    // https://github.com/apache/cordova-plugin-geolocation/issues/257#issuecomment-1883740721
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self; // Tells the location manager to send updates to this object
     __locationStarted = NO;
