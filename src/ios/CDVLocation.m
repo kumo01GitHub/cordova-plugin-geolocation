@@ -80,15 +80,15 @@
     return YES;
 }
 
-- (void)isLocationServicesEnabled:(void (^)(BOOL))comletionHandler
+- (void)isLocationServicesEnabled:(void (^)(BOOL))completionHandler
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BOOL locationServicesEnabledClassPropertyAvailable = [CLLocationManager respondsToSelector:@selector(locationServicesEnabled)]; // iOS 4.x
         
         if (locationServicesEnabledClassPropertyAvailable) { // iOS 4.x
-            comletionHandler([CLLocationManager locationServicesEnabled]);
+            completionHandler([CLLocationManager locationServicesEnabled]);
         } else {
-            comletionHandler(NO);
+            completionHandler(NO);
         }
     });
 }
